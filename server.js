@@ -10,7 +10,7 @@ const io = new Server(server)
 
 io.on("connection", (socket) => {
     const ip = socket.handshake.headers['x-forwarded-for'] || socket.conn.remoteAddress.split(":")[3];
-    console.log(socket.id, ip);
+    console.log(socket.id, ip, getTime());
     socket.on("chat", (data) => {
         io.sockets.emit("chat", data)
     })
@@ -19,3 +19,9 @@ io.on("connection", (socket) => {
         socket.broadcast.emit("typing", data)
     })
 })
+
+function getTime() {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toLocaleString(); // "Sat, 13 Jun 2020 18:30:00 GMT"
+}
