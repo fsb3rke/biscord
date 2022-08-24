@@ -9,7 +9,8 @@ app.use(express.static("public"))
 const io = new Server(server)
 
 io.on("connection", (socket) => {
-    console.log(socket.id);
+    const ip = socket.handshake.headers['x-forwarded-for'] || socket.conn.remoteAddress.split(":")[3];
+    console.log(socket.id, ip);
     socket.on("chat", (data) => {
         io.sockets.emit("chat", data)
     })

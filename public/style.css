@@ -46,6 +46,10 @@ h1 {
     color: white;
 }
 
+#output p:hover{
+    background-color: #303236;
+}
+
 #feedback p{
     font-size: 15px;
     padding: 12px;
@@ -99,14 +103,32 @@ button {
     border-radius: 10px;
   }
 
+
+br {
+    visibility: hidden;
+    -webkit-user-select: none;
+}
+
 #sender, #message {
     color: white;
 }
 
 .date_left_name {
     color: #a3aeb9;
+    -webkit-user-select: none;
 }
 
 .date_left_name:hover {
     color: #daebfd;
+}
+
+.avatar_image {
+    position: relative;
+    border-radius: 50%;
+    top: 30px;
+}
+
+.in_message {
+    position:relative;
+    left: 51px;
 }

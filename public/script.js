@@ -13,7 +13,7 @@ submitBtn.addEventListener("click", () => {
         sender: sender.value
     })
     message.value = ""
-    appWindow.scrollBy(0, 100);
+    appWindow.scrollBy(0, 1000);
 })
 
 message.addEventListener('keypress', function(event) {
@@ -23,13 +23,13 @@ message.addEventListener('keypress', function(event) {
             sender: sender.value
         })
         message.value = ""
-        appWindow.scrollBy(0, 100);
+        appWindow.scrollBy(0, 1000);
     }
 });
 
 socket.on("chat", (data) => {
     if (data.message.trim().length !== 0) {
-        output.innerHTML += `<p><strong>${data.sender} <span class="date_left_name">${getTime()}</span> <br></strong> ${formatMessage(data.message)}</p>`;
+        output.innerHTML += `<p>${getAvatar()}<strong>${data.sender} <span class="date_left_name">${getTime()}</span> <br></strong> <span class="in_message">${formatMessage(data.message)}</span></p>`;
         let prefix = {
             youtube: "https://www.youtube.com/"
         }
@@ -39,7 +39,7 @@ socket.on("chat", (data) => {
             let tag = data.message.split(" ")[data.message.search(prefix.youtube)].split("/")[3].replace("watch?v=", "")
             output.innerHTML += `<p><iframe width="400" height="400" src="https://www.youtube.com/embed/${tag}" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>`;
         }
-        appWindow.scrollBy(0, 100);
+        appWindow.scrollBy(0, 1000);
     }
 })
 
@@ -57,4 +57,10 @@ function formatMessage(message) {
         content += element
     }
     return content
+}
+
+function getAvatar() {
+    let url = "https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png"
+    let link = `<img class="avatar_image" src="${url}" width="51" height="51">`
+    return link
 }
