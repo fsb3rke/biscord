@@ -102,3 +102,11 @@ button {
 #sender, #message {
     color: white;
 }
+
+.date_left_name {
+    color: #a3aeb9;
+}
+
+.date_left_name:hover {
+    color: #daebfd;
+}

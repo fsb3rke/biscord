@@ -28,7 +28,7 @@ message.addEventListener('keypress', function(event) {
 });
 
 socket.on("chat", (data) => {
-    output.innerHTML += `<p><strong>${data.sender} : </strong>${data.message}</p>`;
+    output.innerHTML += `<p><strong>${data.sender} <span class="date_left_name">${getTime()}</span> <br></strong> ${data.message}</p>`;
     let prefix = {
         youtube: "https://www.youtube.com/"
     }
@@ -40,3 +40,9 @@ socket.on("chat", (data) => {
     }
     appWindow.scrollBy(0, 100);
 })
+
+function getTime() {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    return today.toLocaleString(); // "Sat, 13 Jun 2020 18:30:00 GMT"
+}
