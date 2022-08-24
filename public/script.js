@@ -25,9 +25,15 @@ message.addEventListener('keypress', function(event) {
         message.value = ""
         appWindow.scrollBy(0, 1000);
     }
+    socket.emit("typing", sender.value)
 });
 
+socket.on("typing", (data) => {
+    feedback.innerHTML = `<p class="is_typing">${data} is typing...</p>`
+})
+
 socket.on("chat", (data) => {
+    feedback.innerHTML = ""
     if (data.message.trim().length !== 0) {
         output.innerHTML += `<p>${getAvatar()}<strong>${data.sender} <span class="date_left_name">${getTime()}</span> <br></strong> <span class="in_message">${formatMessage(data.message)}</span></p>`;
         let prefix = {

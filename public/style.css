@@ -132,3 +132,7 @@ br {
     position:relative;
     left: 51px;
 }
+
+.is_typing {
+    color: white;
+}
